@@ -10,11 +10,11 @@ describe('handlePullRequestChange', () => {
     expect(typeof handlePullRequestChange).toBe('function')
   })
 
-  test('sets `pending` status if PR has no semantic commits and no semantic title', async () => {
+  test('sets `failure` status if PR has no semantic commits and no semantic title', async () => {
     const context = buildContext()
     context.payload.pull_request.title = 'do a thing'
     const expectedBody = {
-      state: 'pending',
+      state: 'failure',
       target_url: 'https://github.com/probot/semantic-pull-requests',
       description: 'add a semantic commit or PR title',
       context: 'Semantic Pull Request'
